@@ -1,0 +1,123 @@
+<section class="img-text-section">
+  <div class="container">
+    <div class="row">
+      {% capture img_position %}
+      <div class="col-md-6">
+        <div class="img_area">
+          {% if section.settings.imageId != null %}
+            <img src="{{ section.settings.imageId | img_url: 'original' }}" width="100%" alt="Photo">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+      </div>
+      {% endcapture %}
+      {% if section.settings.position == 'left' %}
+        {{ img_position }}
+      {% endif %}
+      <div class="col-md-6">
+        <div class="text_content">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'title' %}
+                <h2>{{ block.settings.title }}</h2>
+              {% when 'description' %}
+                <div class="description">
+                  {{ block.settings.description }}
+                </div>
+              {% when 'button' %}
+                <a href="{{ block.settings.btn_url }}" class="btn btn-success">{{ block.settings.btn_label }}</a>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+      {% if section.settings.position == 'right' %}
+        {{ img_position }}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image And Product",
+  "settings": [
+    {
+      "type":"image_picker",
+      "id": "imageId",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Setting"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Main Title",
+      "settings": [
+        {
+          "type":"text",
+          "id": "title",
+          "label": "Title",
+          "default": "<h2>This is main title</h2>"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>This is conteant</p>"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button label",
+          "default": "See more"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button Link"
+
+        }
+      ]
+    }
+  ],
+  
+  "presets": [
+    {
+      "name": "Text Image",
+      "category": "Text-Image"
+    }
+  ]
+}
+{% endschema %}

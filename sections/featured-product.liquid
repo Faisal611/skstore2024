@@ -1,0 +1,125 @@
+{% assign product = all_products[section.settings.Product] %}
+<section class="featured-product-section" style="padding:100px 0">
+  <div class="container">
+    {% if product != blank %}
+      <div class="row">
+        <div class="col-md-6">
+          <div class="product_img">
+            <img
+              src="{{ product.featured_image | img_url: "original" }}"
+              width="100%"
+              alt="{{ product.title | escape }}"
+              >
+          </div>
+        </div>
+        <div class="col-md-6">
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'title' %}
+                  <h2 class="product-title">{{ product.title }}</h2>
+                {% when 'price' %}
+                  <h3 class="price">{{ product.price | money }}</h3>
+                {% when 'variants' %}
+                  <div class="variants">
+                    <label>Size:</label>
+                    <select name="id" class="form-control">
+                      {% for variant in product.variants %}
+                        <option value="{{ variant.id }}">{{ variant.title }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% when 'description' %}
+                  <p class="description">{{ product.description }}</p>
+                {% when 'quantity' %}
+                  <div class="quantity-selector my-3">
+                    <label>Quantity:</label>
+                    <input type="number" class="form-control" name="quantity" value="1" min="1">
+                  </div>
+                {% when 'addToCart' %}
+                  <div class="btn my-3">
+                    <button type="submit" name="add" class="btn btn-primary">Add To Cart</button>
+                  </div>
+              {% endcase %}
+            {% endfor %}
+          {% endform %}
+        </div>
+      </div>
+    {% else %}
+      <div class="text-center">
+        <h4>Please, select a product first!</h4>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "Product",
+      "label": "Featured Product"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variants",
+      "name": "Variants",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity",
+      "limit": 1
+    },
+    {
+      "type": "addToCart",
+      "name": "Add To Cart"
+    }
+  ],
+  "presets": [
+    {
+      "name":  "Featured Product",
+      "category": "product",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "variants"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "quantity"
+        },
+        {
+          "type": "addToCart"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

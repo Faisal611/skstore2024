@@ -1,0 +1,79 @@
+{%
+  assign collections = section.settings.collection
+%}
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+            {% if  section.settings.collectionId !=blank %}
+              <h2>{{ section.settings.collectionId }} ({{ collections.all_products_count }}) </h2>
+            {% else %}
+              <h2>{{ collections.title }} ({{ collections.all_products_count }}) </h2>
+            {% endif %}
+            </div>
+          {% for product in collections.products limit: section.settings.limits %}
+              <div class="col-md-4">
+                  <div class=" cart_area">
+                    <div class="card">
+                     
+                      <img src="{{ product.featured_image | img_url: 'medium' }}"  alt="{{ product.title }}" class="{% if product.images.size > 1 %}featured-img {% endif %}" />
+                       {% if product.images.size > 1 %}
+                          <img src="{{ product.images[1] | img_url: 'medium' }}" class="second-img" alt="{{ product.title }}"  />
+                        {% endif %}
+                        <div class="card_content">
+                          <h2>{{ product.title | escape }}</h2>
+                          <p>{{ product.price | money }}</p>
+                        </div>
+                        <div class="product-shop-btn">
+                          <a href="" class="btn btn-primary">Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          {% endfor %}
+        </div>
+      {% if collections.all_products_count > 2 %}
+        <div class="more-btn text-center mt-5">
+          <a href="{{ collections.url }}" class="btn btn-primary">View All</a>
+        </div>
+      {% endif %}
+    </div>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+            {
+        "type": "text",
+        "id": "collectionId",
+        "label": "Featured collection",
+        "default": "Feature collection"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "range",
+        "id": "limits",
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "label": "Product Limits",
+        "default": 3
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection",
+        "category": "collection"
+      }
+    ]
+  }
+{% endschema %}

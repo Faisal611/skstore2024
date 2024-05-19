@@ -1,0 +1,97 @@
+<style>
+  .login-area{
+    display:none;
+  }
+  .login-area.active{
+    display:block;
+  }
+</style>
+
+
+<div class="account-template">
+  <div class="container">  
+<!-- Recover Password Start -->
+    <div class="recover-area d-none" id="recover-area">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-5">
+          <div class="header text-center my-5">
+            <h1>Recover Password</h1>
+            <p>We'll send you a password recovery link through this email</p>
+          </div>
+          
+          {% form 'recover_customer_password' %}
+            {% assign recover_seccess = form.posted_successfully? %}
+            <div class="form-group my-3">
+              <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-secondary me-3">Send</button>
+                <a href="#cancel" id="cancel">Cancel</a>
+              </div>
+            </div>
+          {% endform %}
+          
+        </div>
+      </div>
+    </div>
+ <!-- Recover Password End 54-Line -->
+    
+    <div class="login-area active" id="login-area">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-5">
+          <div class="header text-center my-5">
+            <h1>Customer login</h1>
+          </div>
+          {% form 'customer_login' %}
+            {% if  recover_seccess %}
+              <p class="text-success">Password recovery email successfully sent!</p>
+            {% endif %}
+
+            <!-- Email And Password Start -->
+            {{ form.errors | default_errors }}
+            <div class="form-group mb-4">
+              <input
+                type="email"
+                class="form-control"
+                name="customer[email]"
+                placeholder="Email"
+              >
+            </div>
+            <div class="form-group mb-4">
+              <input type="password" class="form-control" name="customer[password]" placeholder="Password">
+            </div>
+            <!-- Email And Password End -->
+            
+            <div class="form-group">
+              <!-- Recover Password Start -->
+              <p>Forgot password? <a href="#recover" id="recover">Recover Password</a></p>
+              <!-- Recover Password End-->
+              
+              <!-- Login and Register Start -->
+              <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-secondary me-3">Login Now</button>
+                <p class="m-0">Don't have an account? <a href="{{ routes.account_register_url }}">Register</a></p>
+              </div>
+            </div>
+             <!-- Login and Register Start -->
+            
+          {% endform %}
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+  document.getElementById("recover").addEventListener("click", ()=>{
+    document.getElementById("login-area").classList.remove("active");
+    document.getElementById("recover-area").classList.remove("d-none");
+  });
+  
+  document.getElementById("cancel").addEventListener("click", ()=>{
+    document.getElementById("login-area").classList.add("active");
+    document.getElementById("recover-area").classList.add("d-none");
+  })
+</script>

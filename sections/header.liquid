@@ -1,0 +1,183 @@
+{% liquid
+    assign logo = section.settings.logo
+    assign menu = section.settings.menu
+    assign searchID = section.settings.searchId
+%}
+<header class="" style="background:#F8F9FA; padding:20px 0">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+                {% if logo != null %}
+                    <img src="{{ logo | image_url: width: 200 }}" alt="{{ shop.name }}">
+                {% else %}
+                    <a class="navbar-brand" href="#">{{ shop.name }}</a>
+                {% endif %}
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- Menu area Start -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% for link in menu.links %}
+                            <li class="nav-item {% if link.links.size > 0 %}dropdown{% endif %}">
+                                <a
+                                        class="nav-link active {% if link.links.size > 0 %}dropdown-toggle{% endif %}"
+                                        aria-current="page"
+                                        href="{{ link.url }}"
+                                        {% if link.links.size > 0 %}
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                        {% endif %}
+                                >
+                                    {{ link.title }}
+                                </a>
+
+                                <!-- Sub Menu area Start -->
+                                {% if link.links.size > 0 %}
+                                    <ul class="dropdown-menu">
+                                        {% for dropdown in link.links %}
+                                            <li>
+                                                <a class="dropdown-item"
+                                                   href="{{ dropdown.url }}">{{ dropdown.title }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                <!-- Sub Menu area End -->
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- Menu area End -->
+                    <!--- Language Area Start --->
+                    {% if settings.enable_language_selector %}
+                        {% if localization.available_languages.size > 1 %}
+                            <div class="lang-area">
+                               {% form 'localization' %}
+                                   <select name="language_code" id="" class="language_selector">
+                                       {% for language in localization.available_languages %}
+                                           {% if language.iso_code == localization.language.iso_code %}
+                                       <option value="{{ language.iso_code }}" selected> {{ language.endonym_name | capitalize }}</option>
+                                               {% else %}
+                                               <option value="{{ language.iso_code }}"> {{ language.endonym_name | capitalize }}</option>
+                                       {% endif %}
+                                       {% endfor %}
+                                   </select>
+                                   {% comment %}<button type="submit">submit</button>{% endcomment %}
+                                {% endform %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    <!--- Language Area End --->
+
+
+                    <!-- Currency Area Start -->
+                    <!-- {% if settings.enable_currency_selector %}
+                    <div class="currency_area">
+                    {% form 'currency' %}
+                    {{ form | currency_selector }}
+                    {% endform %}
+                    </div>
+                    {% endif %}-->
+
+                    <!-- Currency Area End -->
+
+                    <!-- Currency Area Start -->
+                    {% if settings.enable_currency_selector %}
+                        <div class="currency_area mx-2">
+                            {% form 'currency' %}
+                                <select name="currency" id="" class="shopify-currency-form">
+                                    {% for currency in shop.enabled_currencies %}
+                                        {% if currency == cart.currency %}
+                                            <option value="{{ currency.iso_code }}"
+                                                    selected>{{ currency.symbol }} {{ currency.iso_code }}</option>
+                                        {% else %}
+                                            <option value="{{ currency.iso_code }}">{{ currency.iso_code }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            {% endform %}
+                        </div>
+                    {% endif %}
+                    <!-- Currency Area End -->
+
+                    <!-- Search function Start -->
+                    {% if searchID %}
+                    <div class="d-flex align-items-center">
+                        <form action="{{ routes.search_url }}">
+                            <div class="input-group">
+                                <input
+                                        type="text"
+                                        name="q"
+                                        class="form-control"
+                                        placeholder="Search"
+                                        value="{{ search.terms | escape }}"
+                                >
+                                <button class="btn btn-outline-secondary" type="submit">Search</button>
+                            </div>
+                        </form>
+                        {% endif %}
+                        <!-- Search function End -->
+
+                        <!-- Cart Icons Start -->
+                    <div class="cart-counter mx-2">
+                        <a class="" href="{{ routes.cart_url }}">
+                            {% if cart.item_count > 0 %}
+                                <span class="shopping-bag">{% render 'icons', icon: 'bag-fill' %}</span>
+                                (<span> {{ cart.item_count }} </span>)
+                            {% else %}
+                                <span class="shopping-bag">{% render 'icons', icon: 'bag-fill' %}</span>
+                            {% endif %}
+                        </a>
+                    </div>
+                        <!-- Cart Icons End -->
+
+                        <!-- Login and Register Account Start -->
+                        {% if shop.customer_accounts_enabled %}
+                            <div class="customer-account mx-2">
+                                {% if customer %}
+                                    <a href="{{ routes.account_url }}">{% render 'icons', icon: 'account' %}</a>
+                                {% else %}
+                                    <a href="{{ routes.account_login_url }}">{% render 'icons', icon: 'person' %}</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <!-- Login and Register Account End -->
+
+                    </div>
+                </div>
+        </nav>
+    </div>
+</header>
+
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Header Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "searchId",
+      "label": "Search On/Off",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

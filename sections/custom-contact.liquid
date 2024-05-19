@@ -1,0 +1,79 @@
+<h1>{{ page.title }}</h1>
+
+<div class="rte">
+  {{ page.content }}
+</div>
+
+<div class="contact-form">
+  {% form 'contact' %}
+    {% if form.posted_successfully? %}
+      <div class="form-sucess_message_succes">
+        <p>Form submited successfully</p>
+      </div>
+    {% endif %}
+    {{ form.errors | default_errors }}
+    <div class="row">
+      <div class="col">
+        <input
+          t
+          ype="text"
+          rows="5"
+          name="contact[first_name]"
+          class="form-control"
+          placeholder="First name"
+          value="{%- if form[first_name] -%} {{- form.first_name -}}{%- else -%} {{- customer.first_name -}}{%- endif -%}"
+          required
+        >
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          name="contact[last_name]"
+          class="form-control"
+          placeholder="Last name"
+          value="{%- if form[last_name] -%} {{- form.last_name -}}{%- else -%} {{- customer.last_name -}}{%- endif -%}"
+        >
+      </div>
+    </div>
+    <div class="row  py-3">
+      <div class="col">
+        <input
+          type="email"
+          name="contact[email]"
+          class="form-control"
+          placeholder="Email"
+          value="{%- if form[email] -%} {{- form.email -}}{%- else -%} {{- customer.email -}}{%- endif -%}"
+        >
+      </div>
+      <div class="col">
+        <input
+          type="tel"
+          name="contact[phone]"
+          class="form-control"
+          placeholder="Phone"
+          value="{%- if form[phone] -%} {{- form.phone -}}{%- else -%} {{- customer.phone -}}{%- endif -%}"
+          pattern="[0-9\-]*"
+        >
+      </div>
+    </div>
+    <div class="row  py-3">
+      <div class="col">
+        <textarea name="contact[body]" rows="10" id="message" class="form-control" placeholder="Message">
+           {%- if form.body -%}
+            {{- form.body -}}
+           {%- endif -%}
+        </textarea>
+      </div>
+      <div class="submit py-3">
+        <input type="submit" value="Create">
+      </div>
+    </div>
+  {% endform %}
+</div>
+
+{% schema %}
+{
+  "name": "Contact Section",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+<div class="blog-template">
+  <div class="container-fluid">
+    <div class="row py-5">
+      <div class="col-lg-9 col-md-9">
+        <div class="container">
+          <div class="blog-title">
+            <h1>{{ blog.title }}</h1>
+            <hr>
+          </div>
+
+          <div class="row">
+            {% for article in blog.articles %}
+              {% render 'article-card', article: article %}
+            {% endfor %}
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3">
+        {% if blog.all_tags.size > 0 %}
+          <h4>Categories</h4>
+          <ul class="category-list">
+            {% for tag in blog.all_tags %}
+              {% if current_tags contains tag %}
+                <li>{{- tag -}}</li>
+              {% else %}
+                <li>{{- tag | link_to_tag: tag }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<section class="list-collections">
+  <div class="container">
+    <h2>{{ page_title }}</h2>
+    <div class="main-collections my-5">
+      <div class="row">
+        {% for collection in collections %}
+          {% unless collection.handle contains 'frontpage' %}
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="collection-img">
+                    {% if collection.featured_image != null %}
+                      <img
+                        src="{{ collection.featured_image | img_url: 'medium' }}"
+                        width="100%"
+                        alt="{{ collection.title |escape }}"
+                      >
+                    {% else %}
+                      {{ 'image' | placeholder_svg_tag }}
+                    {% endif %}
+                  </div>
+                  <div class="collection-title">
+                    <h3>{{ collection.title | link_to:collection.url }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

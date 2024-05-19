@@ -1,0 +1,360 @@
+{
+  "current": {
+    "sections": {
+      "collection-list": {
+        "type": "collection-list",
+        "blocks": {
+          "collection-list-0": {
+            "type": "collection",
+            "settings": {
+              "collection": ""
+            }
+          },
+          "collection-list-1": {
+            "type": "collection",
+            "settings": {
+              "collection": ""
+            }
+          },
+          "collection-list-2": {
+            "type": "collection",
+            "settings": {
+              "collection": ""
+            }
+          }
+        },
+        "block_order": [
+          "collection-list-0",
+          "collection-list-1",
+          "collection-list-2"
+        ],
+        "disabled": true,
+        "settings": {
+          "title": "Collection list"
+        }
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "collectionId": "Feature collection",
+          "collection": "frontpage",
+          "limits": 3
+        }
+      },
+      "featured-product": {
+        "type": "featured-product",
+        "settings": {
+          "Product": ""
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/Screenshot_1.png",
+          "menu": "main-menu",
+          "searchId": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+        }
+      },
+      "hero_slider_Ae7qjF": {
+        "type": "hero-slider",
+        "blocks": {
+          "slider_CXEk7m": {
+            "type": "slider",
+            "settings": {
+              "slider_img": "shopify:\/\/shop_images\/shanghai.jpg",
+              "title": "Summer Sala",
+              "content": "<p>Some representative placeholder content for the first slide.<\/p>",
+              "btn-text-id": "Shop Now",
+              "button_link": "#"
+            }
+          },
+          "slider_8XGJ6G": {
+            "type": "slider",
+            "settings": {
+              "slider_img": "shopify:\/\/shop_images\/london830775.jpg",
+              "title": "Summer Sala",
+              "content": "<p>Some representative placeholder content for the first slide.<\/p>",
+              "btn-text-id": "Shop Now",
+              "button_link": ""
+            }
+          },
+          "slider_U6Uctr": {
+            "type": "slider",
+            "settings": {
+              "slider_img": "shopify:\/\/shop_images\/hongkong1081704.jpg",
+              "title": "Summer Sala",
+              "content": "<p>Some representative placeholder content for the first slide.<\/p>",
+              "btn-text-id": "Shop Now",
+              "button_link": "#"
+            }
+          }
+        },
+        "block_order": [
+          "slider_CXEk7m",
+          "slider_8XGJ6G",
+          "slider_U6Uctr"
+        ],
+        "settings": {
+          "arrow-enable": true
+        }
+      },
+      "image_with_text_tGjFk7": {
+        "type": "image-with-text",
+        "blocks": {
+          "title_PzmUdx": {
+            "type": "title",
+            "settings": {
+              "title": "This is main title"
+            }
+          },
+          "description_h7Rg3W": {
+            "type": "description",
+            "settings": {
+              "description": "<p>This is conteant<\/p>"
+            }
+          },
+          "button_hLLL7C": {
+            "type": "button",
+            "settings": {
+              "btn_label": "See more",
+              "btn_url": "#"
+            }
+          }
+        },
+        "block_order": [
+          "title_PzmUdx",
+          "description_h7Rg3W",
+          "button_hLLL7C"
+        ],
+        "settings": {
+          "imageId": "shopify:\/\/shop_images\/shanghai_0cf613fc-baab-48a5-9b20-94a5cf135c72.jpg",
+          "position": "left"
+        }
+      },
+      "featured_collection_EAyiQK": {
+        "type": "featured-collection",
+        "settings": {
+          "collectionId": "Feature collection",
+          "collection": "faisal",
+          "limits": 3
+        }
+      },
+      "featured_product_DwcDeJ": {
+        "type": "featured-product",
+        "blocks": {
+          "title_cD7G3g": {
+            "type": "title",
+            "settings": {
+            }
+          },
+          "price_mQqhed": {
+            "type": "price",
+            "settings": {
+            }
+          },
+          "variants_ywGCdY": {
+            "type": "variants",
+            "settings": {
+            }
+          },
+          "description_RKG7cE": {
+            "type": "description",
+            "settings": {
+            }
+          },
+          "quantity_XdQiDz": {
+            "type": "quantity",
+            "settings": {
+            }
+          },
+          "add_to_cart_qaGKPg": {
+            "type": "addToCart",
+            "settings": {
+            }
+          }
+        },
+        "block_order": [
+          "title_cD7G3g",
+          "price_mQqhed",
+          "variants_ywGCdY",
+          "description_RKG7cE",
+          "quantity_XdQiDz",
+          "add_to_cart_qaGKPg"
+        ],
+        "settings": {
+          "Product": "variation-product"
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "blocks": {
+          "vendor_3Xp3DT": {
+            "type": "vendor",
+            "settings": {
+            }
+          },
+          "title_aDKXWG": {
+            "type": "title",
+            "settings": {
+            }
+          },
+          "description_8LyRPk": {
+            "type": "description",
+            "settings": {
+            }
+          },
+          "price_nN6LUC": {
+            "type": "price",
+            "settings": {
+            }
+          },
+          "variants_MfCYUm": {
+            "type": "variants",
+            "settings": {
+            }
+          },
+          "quntity_8zMnVm": {
+            "type": "quntity",
+            "settings": {
+            }
+          },
+          "add_to_cart_btn_GgXbxy": {
+            "type": "add_to_cart_btn",
+            "settings": {
+            }
+          }
+        },
+        "block_order": [
+          "vendor_3Xp3DT",
+          "title_aDKXWG",
+          "description_8LyRPk",
+          "price_nN6LUC",
+          "variants_MfCYUm",
+          "quntity_8zMnVm",
+          "add_to_cart_btn_GgXbxy"
+        ],
+        "settings": {
+        }
+      },
+      "suggested-template": {
+        "type": "suggested-template",
+        "settings": {
+          "collection": "faisal"
+        }
+      },
+      "product_template_FHgFEU": {
+        "type": "product-template",
+        "blocks": {
+          "title_UtwXeB": {
+            "type": "title",
+            "settings": {
+            }
+          },
+          "variants_ncRgea": {
+            "type": "variants",
+            "settings": {
+            }
+          },
+          "vendor_DmxQLP": {
+            "type": "vendor",
+            "settings": {
+            }
+          },
+          "description_Rxzqfe": {
+            "type": "description",
+            "settings": {
+            }
+          },
+          "price_BWDAjC": {
+            "type": "price",
+            "settings": {
+            }
+          },
+          "quntity_agJrqx": {
+            "type": "quntity",
+            "settings": {
+            }
+          },
+          "add_to_cart_btn_9AiUEg": {
+            "type": "add_to_cart_btn",
+            "settings": {
+            }
+          }
+        },
+        "block_order": [
+          "title_UtwXeB",
+          "variants_ncRgea",
+          "vendor_DmxQLP",
+          "description_Rxzqfe",
+          "price_BWDAjC",
+          "quntity_agJrqx",
+          "add_to_cart_btn_9AiUEg"
+        ],
+        "settings": {
+        }
+      }
+    },
+    "content_for_index": [
+      "collection-list",
+      "hero_slider_Ae7qjF",
+      "image_with_text_tGjFk7",
+      "featured_collection_EAyiQK",
+      "featured_product_DwcDeJ",
+      "product_template_FHgFEU"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "sections": {
+        "collection-list": {
+          "type": "collection-list",
+          "blocks": {
+            "collection-list-0": {
+              "type": "collection",
+              "settings": {
+              }
+            },
+            "collection-list-1": {
+              "type": "collection",
+              "settings": {
+              }
+            },
+            "collection-list-2": {
+              "type": "collection",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "collection-list-0",
+            "collection-list-1",
+            "collection-list-2"
+          ],
+          "settings": {
+          }
+        },
+        "featured-collection": {
+          "type": "featured-collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "featured-product": {
+          "type": "featured-product",
+          "settings": {
+          }
+        }
+      },
+      "content_for_index": [
+        "collection-list",
+        "featured-collection",
+        "featured-product"
+      ]
+    }
+  }
+}

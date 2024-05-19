@@ -1,0 +1,65 @@
+<div class="article-template">
+  <div class="container">
+    {% if article.image != blank %}
+    <div class="header-banner">
+       <img src="{{ article.image | img_url:'original' }}" width="100%" alt="{{ article.image | escape }}">
+    </div>
+    {% endif %}
+    <div class="article-content py-5">
+      <div class="container">
+        <div class="header">
+          <h1>{{ article.title | escape }}</h1>
+          <p>Posted by <strong>{{ article.author }}</strong> on {{ article.published_at | time_tag: format: 'month_day_year' }}</p>
+        </div>
+        <div class="content my-5">
+          {{ article.content }}
+        </div>
+        <a href="{{ blog.url }}">Back to blogs</a>
+
+        {% if article.comments_enabled? %}
+        <div class="article-comments py-4">
+          <h1 class="mb-3">Write a comment</h1>
+          <div class="write-comments">
+            {% form 'new_comment', article %}
+              {% if form.posted_successfully? %}
+              <p class="text-success">Comment successfully posted!</p>
+              {% endif %}
+              {{ form.errors | default_errors }}
+              <div class="row my-4">
+                <div class="col">
+                  <input type="text" class="form-control" name="comment[author]" value="{% if customer %}{{- customer.name -}}{%- else -%}{{- form.author -}}{%- endif %}" placeholder="Name">
+                </div>
+                <div class="col">
+                  <input type="email" class="form-control" name="comment[email]" value="{% if customer %}{{- customer.email -}}{%- else -%}{{- form.email -}}{%- endif %}" placeholder="Email">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <textarea class="form-control" name="comment[body]" rows="5" placeholder="Your comment...">{{- form.body -}}</textarea>
+                </div>
+              </div>
+            <div class="action mt-4">
+              <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>
+            {% endform %}
+          </div>    
+
+          
+          {% if article.comments_count > 0 %}
+            <hr>
+          <div class="all_comments my-5">
+            <h1 class="mb-3">Total comments ({{ article.comments_count }})</h1>
+            {% for comment in article.comments %}
+              <div class="comment">
+                <div class="rte">{{ comment.content }}</div>
+                <p>Commented by <b>{{ comment.author }}</b> on {{ comment.created_at | time_tag: format:'month_day_year' }}</p>
+              </div>            
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
