@@ -61,9 +61,10 @@ Currency Function
     {% endif %}
 <!-- Currency Area End -->
 ````
-Languages Function
-````
+Languages Function:
 https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-language-selector
+````
+
 <!--- Language Area Start --->
     {% if settings.enable_language_selector %}
         {% if localization.available_languages.size > 1 %}
@@ -72,9 +73,9 @@ https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-langua
                    <select name="language_code" id="" class="language_selector">
                        {% for language in localization.available_languages %}
                            {% if language.iso_code == localization.language.iso_code %}
-                       <option value="{{ language.iso_code }}" selected> {{ language.endonym_name | capitalize }}</option>
-                               {% else %}
-                               <option value="{{ language.iso_code }}"> {{ language.endonym_name | capitalize }}</option>
+                                <option value="{{ language.iso_code }}" selected> {{ language.endonym_name | capitalize }}</option>
+                           {% else %}
+                                <option value="{{ language.iso_code }}"> {{ language.endonym_name | capitalize }}</option>
                        {% endif %}
                        {% endfor %}
                    </select>
