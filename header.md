@@ -62,8 +62,8 @@ Currency Function
 <!-- Currency Area End -->
 ````
 Languages Function
-https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-language-selector
 ````
+https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-language-selector
 <!--- Language Area Start --->
     {% if settings.enable_language_selector %}
         {% if localization.available_languages.size > 1 %}
