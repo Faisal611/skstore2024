@@ -63,6 +63,16 @@ Currency Function
         </div>
     {% endif %}
 <!-- Currency Area End -->
+
+<!--- Js Script ----->
+    window.addEventListener("DOMContentLoaded",()=>{
+      function onChangeSubmitHandler(event){
+        event.target.form.submit();
+      }
+      document.querySelectorAll('.shopify-currency-form').forEach((elm)=>{
+        elm.addEventListener('change',onChangeSubmitHandler);
+      })
+    })
 ````
 
 Languages Function:
@@ -89,21 +99,31 @@ https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-langua
         {% endif %}
     {% endif %}
 <!--- Language Area End --->
+<!--- Js Script -->
+    window.addEventListener("DOMContentLoaded",()=>{
+      function onChangeSubmitHandler(event){
+        event.target.form.submit();
+      }
+      document.querySelectorAll('.language_selector').forEach((elm)=>{
+        elm.addEventListener('change',onChangeSubmitHandler);
+      })
+    })
 ````
 Search Function
 ```liquid
-{% if searchID %}
-    <div class="d-flex align-items-center">
-    <form action="{{ routes.search_url }}">
-        <div class="input-group">
-            <input
-                    type="text"
-                    name="q"
-                    class="form-control"
-                    placeholder="Search"
-                    value="{{ search.terms | escape }}"
-            >
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
-        </div>
-    </form>
-{% endif %}
+    {% if searchID %}
+        <div class="d-flex align-items-center">
+        <form action="{{ routes.search_url }}">
+            <div class="input-group">
+                <input
+                        type="text"
+                        name="q"
+                        class="form-control"
+                        placeholder="Search"
+                        value="{{ search.terms | escape }}"
+                >
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
+    {% endif %}
+```

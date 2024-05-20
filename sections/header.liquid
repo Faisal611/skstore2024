@@ -56,36 +56,44 @@
                         {% endfor %}
                     </ul>
                     <!-- Menu area End -->
+
+                    {% comment %}<!-- Currency Area Start -->{% endcomment %}
+                    {% comment %}{% if settings.enable_currency_selector %}{% endcomment %}
+                    {% comment %}<div class="currency_area">{% endcomment %}
+                    {% comment %}{% form 'currency' %}{% endcomment %}
+                    {% comment %}{{ form | currency_selector }}{% endcomment %}
+                    {% comment %}{% endform %}{% endcomment %}
+                    {% comment %}</div>{% endcomment %}
+                    {% comment %}{% endif %}{% endcomment %}
+                    {% comment %}<!-- Currency Area End -->{% endcomment %}
                     <!--- Language Area Start --->
                     {% if settings.enable_language_selector %}
                         {% if localization.available_languages.size > 1 %}
                             <div class="lang-area">
-                               {% form 'localization' %}
-                                   <select name="language_code" id="" class="language_selector">
-                                       {% for language in localization.available_languages %}
-                                           {% if language.iso_code == localization.language.iso_code %}
-                                       <option value="{{ language.iso_code }}" selected> {{ language.endonym_name | capitalize }}</option>
-                                               {% else %}
-                                               <option value="{{ language.iso_code }}"> {{ language.endonym_name | capitalize }}</option>
-                                       {% endif %}
-                                       {% endfor %}
-                                   </select>
-                                   {% comment %}<button type="submit">submit</button>{% endcomment %}
+                                {% form 'localization' %}
+                                    <select name="language_code" id="" class="language_selector">
+                                        {% for language in localization.available_languages %}
+                                            {% if language.iso_code == localization.language.iso_code %}
+                                                <option value="{{ language.iso_code }}" selected> {{ language.endonym_name | capitalize }}</option>
+                                            {% else %}
+                                                <option value="{{ language.iso_code }}"> {{ language.endonym_name | capitalize }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                    {% comment %}<button type="submit">submit</button>{% endcomment %}
                                 {% endform %}
                             </div>
                         {% endif %}
                     {% endif %}
                     <!--- Language Area End --->
-
                     <!-- Currency Area Start -->
                     {% if settings.enable_currency_selector %}
-                        <div class="currency_area mx-2">
+                        <div class="currency_area">
                             {% form 'currency' %}
                                 <select name="currency" id="" class="shopify-currency-form">
                                     {% for currency in shop.enabled_currencies %}
                                         {% if currency == cart.currency %}
-                                            <option value="{{ currency.iso_code }}"
-                                                    selected>{{ currency.symbol }} {{ currency.iso_code }}</option>
+                                            <option value="{{ currency.iso_code }}" selected>{{ currency.symbol }} {{ currency.iso_code }}</option>
                                         {% else %}
                                             <option value="{{ currency.iso_code }}">{{ currency.iso_code }}</option>
                                         {% endif %}
@@ -111,26 +119,25 @@
                                 <button class="btn btn-outline-secondary" type="submit">Search</button>
                             </div>
                         </form>
-                    </div>
                         {% endif %}
                         <!-- Search function End -->
 
                         <!-- Cart Icons Start -->
-                    <div class="cart-counter mx-2">
-                        <a class="" href="{{ routes.cart_url }}">
-                            {% if cart.item_count > 0 %}
-                                <span class="shopping-bag">{% render 'icons', icon: 'bag-fill' %}</span>
-                                (<span> {{ cart.item_count }} </span>)
-                            {% else %}
-                                <span class="shopping-bag">{% render 'icons', icon: 'bag-fill' %}</span>
-                            {% endif %}
-                        </a>
-                    </div>
+                        <div class="cart-counter mx-5">
+                            <a class="" href="{{ routes.cart_url }}">
+                                {% if cart.item_count > 0 %}
+                                    <span class="shopping-bag">{% render 'icons', icon: 'bag-fill' %}</span>
+                                    (<span> {{ cart.item_count }} </span>)
+                                {% else %}
+                                    <span class="shopping-bag">{% render 'icons', icon: 'bag' %}</span>
+                                {% endif %}
+                            </a>
+                        </div>
                         <!-- Cart Icons End -->
 
                         <!-- Login and Register Account Start -->
                         {% if shop.customer_accounts_enabled %}
-                            <div class="customer-account mx-2">
+                            <div class="customer-account mx-5">
                                 {% if customer %}
                                     <a href="{{ routes.account_url }}">{% render 'icons', icon: 'account' %}</a>
                                 {% else %}
@@ -166,9 +173,6 @@
       "id": "searchId",
       "label": "Search On/Off",
       "default": true
-    },
-    {
-      "type": ""
     }
   ]
 }

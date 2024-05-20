@@ -21,10 +21,6 @@
         "default": true
       },
       {
-        "type": "header",
-        "content": "Language"
-      },
-      {
         "type": "checkbox",
         "id": "enable_language_selector",
         "label": "Enable Language",
