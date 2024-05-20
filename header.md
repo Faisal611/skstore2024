@@ -1,4 +1,5 @@
 Header
+
 ````
 <!-- Menu area Start -->
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -32,7 +33,9 @@ Header
 </ul>
 <!-- Menu area End -->
 ````
+
 Currency Function
+
 ````
 <!-- Currency Area Start -->
 {% if settings.enable_currency_selector %}
@@ -61,8 +64,10 @@ Currency Function
     {% endif %}
 <!-- Currency Area End -->
 ````
+
 Languages Function:
 https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-language-selector
+
 ````
 
 <!--- Language Area Start --->
@@ -73,10 +78,10 @@ https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-langua
                    <select name="language_code" id="" class="language_selector">
                        {% for language in localization.available_languages %}
                            {% if language.iso_code == localization.language.iso_code %}
-                                <option value="{{ language.iso_code }}" selected> {{ language.endonym_name | capitalize }}</option>
-                           {% else %}
-                                <option value="{{ language.iso_code }}"> {{ language.endonym_name | capitalize }}</option>
-                       {% endif %}
+                                    <option value="{{ language.iso_code }}" selected> {{ language.endonym_name | capitalize }}</option>
+                                {% else %}
+                                    <option value="{{ language.iso_code }}"> {{ language.endonym_name | capitalize }}</option>
+                            {% endif %}
                        {% endfor %}
                    </select>
                    {% comment %}<button type="submit">submit</button>{% endcomment %}
