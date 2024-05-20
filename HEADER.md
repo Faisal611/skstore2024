@@ -1,6 +1,6 @@
 Header
 
-````
+````liquid
 <!-- Menu area Start -->
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     {% for link in menu.links %}
@@ -36,7 +36,7 @@ Header
 
 Currency Function
 
-````
+````liquid
 <!-- Currency Area Start -->
 {% if settings.enable_currency_selector %}
     {% form 'currency' %}
@@ -68,7 +68,7 @@ Currency Function
 Languages Function:
 https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-language-selector
 
-````
+````liquid
 <!--- Language Area Start --->
     {% if settings.enable_language_selector %}
         {% if localization.available_languages.size > 1 %}
