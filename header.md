@@ -40,6 +40,7 @@ Currency Function
         {{ form | currency_selector }}
     {% endform %}
 {% endif %}
+<!-- Currency Area End -->
 
 <!-- Currency Area Start -->
     {% if settings.enable_currency_selector %}
@@ -59,6 +60,28 @@ Currency Function
         </div>
     {% endif %}
 <!-- Currency Area End -->
-
-<!-- Currency Area End -->
+````
+Languages Function
+https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-language-selector
+````
+<!--- Language Area Start --->
+    {% if settings.enable_language_selector %}
+        {% if localization.available_languages.size > 1 %}
+            <div class="lang-area">
+               {% form 'localization' %}
+                   <select name="language_code" id="" class="language_selector">
+                       {% for language in localization.available_languages %}
+                           {% if language.iso_code == localization.language.iso_code %}
+                       <option value="{{ language.iso_code }}" selected> {{ language.endonym_name | capitalize }}</option>
+                               {% else %}
+                               <option value="{{ language.iso_code }}"> {{ language.endonym_name | capitalize }}</option>
+                       {% endif %}
+                       {% endfor %}
+                   </select>
+                   {% comment %}<button type="submit">submit</button>{% endcomment %}
+                {% endform %}
+            </div>
+        {% endif %}
+    {% endif %}
+<!--- Language Area End --->
 ````
