@@ -69,7 +69,6 @@ Languages Function:
 https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-language-selector
 
 ````
-
 <!--- Language Area Start --->
     {% if settings.enable_language_selector %}
         {% if localization.available_languages.size > 1 %}
@@ -91,3 +90,20 @@ https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-langua
     {% endif %}
 <!--- Language Area End --->
 ````
+Search Function
+```liquid
+{% if searchID %}
+    <div class="d-flex align-items-center">
+    <form action="{{ routes.search_url }}">
+        <div class="input-group">
+            <input
+                    type="text"
+                    name="q"
+                    class="form-control"
+                    placeholder="Search"
+                    value="{{ search.terms | escape }}"
+            >
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+{% endif %}
