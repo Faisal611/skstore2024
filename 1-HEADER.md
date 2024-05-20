@@ -36,6 +36,7 @@ Header
 
 Currency Function
 
+
 ````liquid
 <!-- Currency Area Start -->
 {% if settings.enable_currency_selector %}
@@ -100,6 +101,7 @@ https://shopify.dev/docs/themes/markets/multiple-currencies-languages#the-langua
     {% endif %}
 <!--- Language Area End --->
 <!--- Js Script -->
+
     window.addEventListener("DOMContentLoaded",()=>{
       function onChangeSubmitHandler(event){
         event.target.form.submit();
@@ -126,4 +128,30 @@ Search Function
             </div>
         </form>
     {% endif %}
+```
+Schema
+```liquid
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Header Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "searchId",
+      "label": "Search On/Off",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
 ```

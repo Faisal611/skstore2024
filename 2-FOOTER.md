@@ -1,6 +1,8 @@
 Header
 
 ````liquid
+
+
 <!-- Menu area Start -->
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     {% for link in menu.links %}
