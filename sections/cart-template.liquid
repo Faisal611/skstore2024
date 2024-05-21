@@ -44,8 +44,8 @@
 
                             <!-- product variant name show start -->
                             {% if line_item.product.has_only_default_variant == false
-                              or line_item.properties.size != 0
-                              or line_item.selling_plan_allocation != null
+                            or line_item.properties.size != 0
+                            or line_item.selling_plan_allocation != null
                             %}
                               {% if line_item.product.has_only_default_variant == false %}
                                 <div class="item-optiona">
@@ -69,7 +69,7 @@
                       <td>
                         <div class="price-wrapper">
                           {% if line_item.original_price != line_item.final_price %}
-                            
+
                             <del>{{ line_item.original_price | money }}</del><br>
                             <span class="final-sale-price">{{ line_item.final_line_price | money }}</span>
                           {% else %}

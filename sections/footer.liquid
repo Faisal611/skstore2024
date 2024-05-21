@@ -21,6 +21,7 @@
       <div class="row">
         
         {% for block in section.blocks %}
+          
           {% case block.type %}
             {% when 'menu' %}
               <div class="{{ column }}">
@@ -54,6 +55,7 @@
                 </div>
               </div>
           {% endcase %}
+          
         {% endfor %}
         
       </div>
