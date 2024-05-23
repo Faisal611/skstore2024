@@ -10,7 +10,7 @@
   {% if section.settings.title != blank %}
     <h2 class="collection-list__title">{{ section.settings.title | escape }}</h2>
   {% endif %}
-
+{% if b %}
   {% for block in section.blocks %}
     {%- assign collection = collections[block.settings.collection] -%}
 
