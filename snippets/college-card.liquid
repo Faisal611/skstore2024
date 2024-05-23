@@ -1,0 +1,12 @@
+      <div class="college-item">
+            <a href="{{ card_collection.url }}" class="single-college-item">
+                  {%if card_collection.featured_image !=blank%}
+                        <img src="{{ card_collection.featured_image |  image_url }}" width="70%" height="100%" alt="">
+                  {%  else %} 
+                        <img src="" width="70%" height="100%" alt="Photo">
+               {% endif %}
+            </a>
+            <div class="college-item-title">
+                  <h2>{{ card_collection.title }}</h2>
+            </div>
+      </div>

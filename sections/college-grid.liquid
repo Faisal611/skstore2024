@@ -1,0 +1,98 @@
+
+
+<section class="grid-section">
+   <div class="container">
+    <div class="cillege-title-area text-center">
+        <h1>{{ section.settings.college-title }}</h1>
+        <p>{{ section.settings.college-content }}</p>
+    </div>
+      <div class="grid-item">
+         {% for block in section.blocks %}
+            {%  case block.type %} 
+               {%  when 'collection' %}
+                  {%  render 'college-card' card_collection: block.settings.collection  %}
+            {% endcase %}
+            
+         {% endfor %}
+      </div>
+   </div>
+</section>
+<style>
+     .grid-section {
+         padding: 100px 0;
+      }
+      img {
+         width: 100%;
+         height: 100%;
+      }
+      .college-item {
+         position: relative;
+      }
+      .college-item-title {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50% ,-50%);
+      }
+      .grid-item {
+         display: grid;
+         grid-auto-flow: column;
+         gap: 30px;
+         grid-template-columns: repeat(4,minmax(0,1fr));
+      }
+      .college-item:nth-child(1){
+         grid-column: 1/span 2;
+         grid-row: span 2;
+      }
+      .college-item:nth-child(2){
+         grid-column: 3 /span 2;
+         grid-row: span 1;
+      }
+      a.single-college-item {
+         width: 100%;
+         height: 100%;
+         display: block;
+      }
+</style>
+
+
+
+{% schema %}
+    {
+      "name": "College Collection",
+      "settings": [
+         {
+            "type": "text",
+            "id": "college-title",
+            "label": "Title",
+            "default":"College Title"
+         },
+         {
+            "type": "text",
+            "id": "college-content",
+            "label": "Content",
+            "default":"College Content"
+         }
+      ],
+      "max_blocks": 4,
+      "blocks": [
+         {
+         "type": "collection",
+         "name": "Collection",
+         "settings": [
+               {
+                  "label": "Collection",
+                  "id": "collection",
+                  "type": "collection"
+               }
+            ]
+         }
+         
+      ],
+       "presets": [
+        {
+          "name": "College Collection"
+        }
+      ]
+    }
+    {% endschema %}
