@@ -78,6 +78,7 @@
         </div>
       </li>
     {% else %}
+
       {% for i in (1..section.settings.post_limit) %}
         <li class="blog-post__item">
           <h3>
@@ -93,6 +94,7 @@
           <a href="#">{{ 'blogs.article.read_more' | t }}</a>
         </li>
       {% endfor %}
+      
     {% endfor %}
   </ul>
 </section>
