@@ -77,23 +77,23 @@
           <a href="{{ article.url }}" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">{{ 'blogs.article.read_more' | t }}</a>
         </div>
       </li>
-    {% else %}
+      {% else %}
 
-      {% for i in (1..section.settings.post_limit) %}
-        <li class="blog-post__item">
-          <h3>
-            <a href="#">{{ 'homepage.onboarding.blog_title' | t }}</a>
-          </h3>
+        {% for i in (1..section.settings.post_limit) %}
+          <li class="blog-post__item">
+            <h3>
+              <a href="#">{{ 'homepage.onboarding.blog_title' | t }}</a>
+            </h3>
 
-          {% if section.settings.blog_show_author %}
-            <span>{{ 'homepage.onboarding.blog_author' | t }}</span>
-          {% endif %}
+            {% if section.settings.blog_show_author %}
+              <span>{{ 'homepage.onboarding.blog_author' | t }}</span>
+            {% endif %}
 
-          <div>{{ 'homepage.onboarding.blog_excerpt' | t }}</div>
+            <div>{{ 'homepage.onboarding.blog_excerpt' | t }}</div>
 
-          <a href="#">{{ 'blogs.article.read_more' | t }}</a>
-        </li>
-      {% endfor %}
+            <a href="#">{{ 'blogs.article.read_more' | t }}</a>
+          </li>
+        {% endfor %}
       
     {% endfor %}
   </ul>
