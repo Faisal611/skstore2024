@@ -1,0 +1,130 @@
+<style>
+    #shopify-section-template--17304132321429__product_tabs_GUaYRX {
+        padding-top: 50px;
+    }
+    .tab-menu {
+        height: 80px;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        border: 1px solid #FFFFFF60;
+    }
+    .tab-menu ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 40px;
+        padding: 0px 0px 0px 20px;
+    }
+    .tab-menu ul li{
+        list-style-type: none;
+        display: inline-block;
+    }
+    .tab-menu ul li a{
+        text-decoration: none;
+        color: rgba(187, 186, 186, 0.651);
+        padding: 7px 2px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .tab-menu ul li a.active-a{
+        color: #ffffff;
+        border-bottom: 1px solid white;
+        transition: all 0.5s cubic-bezier(0.97, 0.44, 0.34, -0.12);
+        cursor: pointer;
+    }
+    .tab{
+        display: none;
+    }
+    .tab h2{
+        color: white;
+    }
+    .tab p{
+        color: white;
+        text-align: justify;
+    }
+    .tab-active {
+        display: block;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+        backdrop-filter: blur(4px);
+        padding: 10px 20px 50px 20px;
+        margin-top: 15px;
+    }
+    @media screen and (min-width: 320px) {
+        .tab-menu ul li a {
+            font-size: 15px;
+        }
+        @media screen and (min-width: 750px) {
+            .tab-menu ul li a {
+                font-size:  20px;
+            }
+        }
+</style>
+
+<div class="tab-container">
+    <div class="page-width">
+        <div class="tab-menu">
+            <ul>
+                {% for block in section.blocks %}
+                    <li>
+                        <a class="tab-a {% if forloop.first %}active-a{% endif %}" data-id="tab-{{ block.id }}">
+                            {{- block.settings.title -}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% for block in section.blocks %}
+            <div class="tab {% if forloop.first %}tab-active{% endif %}" data-id="tab-{{ block.id }}">
+                <p>{{ block.settings.desc }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.tab-a').click(function () {
+
+            $(".tab").removeClass('tab-active');
+            $(".tab[data-id='" + $(this).attr('data-id') + "']").addClass("tab-active");
+            $(".tab-a").removeClass('active-a');
+            $(this).parent().find(".tab-a").addClass('active-a');
+
+        });
+    });
+</script>
+{% schema %}
+{
+  "name": "Product Tabs",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "blog-banner",
+      "name": "Blog Contant",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "input your title"
+
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Input you content",
+          "default": "<p>input your content</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Tabs"
+    }
+  ]
+}
+{% endschema %}
