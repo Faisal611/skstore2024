@@ -1,0 +1,172 @@
+<section class="x">
+    <div class="page-width">
+        <ul class="accordion-list">
+            {% for block in section.blocks %}
+                <li>
+                    <h3>{{  block.settings.title }}</h3>
+                    <div class="answer" style="display: none;">
+                        {{ block.settings.description }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<style>
+
+    ul.accordion-list {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        margin: 0;
+        list-style: none;
+        /* background-color: #f9f9fA; */
+
+        li {
+            position: relative;
+            display: block;
+            height: auto;
+            color: #FFFFFF;
+            padding: 20px;
+            margin: 0 auto 15px auto;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+
+            &.active {
+                h3 {
+                    &:after {
+                        /* transform: rotate(45deg); */
+                        content: "\2212";
+                    }
+                }
+            }
+
+            h3 {
+                font-weight: 500;
+                position: relative;
+                display: block;
+                width: 100%;
+                height: auto;
+                padding: 0 0 0 0;
+                margin: 0;
+                font-size: 20px;
+                letter-spacing: 0.01em;
+                cursor: pointer;
+                font-family: Work Sans;
+
+                &:after {
+                    content: "\002B";
+                    font-family: "material-design-iconic-font";
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    color: #FFFFFF;
+                    transition: all 0.3s ease-in-out;
+                    font-size: x-large;
+                }
+            }
+
+            div.answer {
+                position: relative;
+                display: block;
+                width: 100%;
+                height: auto;
+                margin: 0;
+                padding: 0;
+                cursor: pointer;
+
+                p {
+                    position: relative;
+                    display: block;
+                    font-weight: 300;
+                    padding: 10px 0 0 0;
+                    cursor: pointer;
+                    line-height: 150%;
+                    margin: 0 0 15px 0;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 320px) {
+        ul.accordion-list li {
+            padding: 20px 20px 20px 0;
+        }
+        ul.accordion-list li h3 {
+            font-size: 14px;
+        }
+    }
+    @media screen and (min-width: 750px) {
+        ul.accordion-list li {
+            padding: 20px 20px 20px 20px;
+        }
+        ul.accordion-list li h3 {
+            font-size: 20px;
+        }
+    }
+    @media screen and (min-width: 750px) {
+
+    }
+
+    @media screen and (min-width: 990px) {
+
+    }
+
+
+</style>
+
+<script>
+    $(document).ready(function(){
+        $('.accordion-list > li > .answer').hide();
+
+        $('.accordion-list > li').click(function() {
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active").find(".answer").slideUp();
+            } else {
+                $(".accordion-list > li.active .answer").slideUp();
+                $(".accordion-list > li.active").removeClass("active");
+                $(this).addClass("active").find(".answer").slideDown();
+            }
+            return false;
+        });
+
+    });
+</script>
+
+{% schema %}
+{
+  "name": "Accordian  Sections",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "accordian-with-text",
+      "name": "Accordian with text",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Put your text",
+          "default":"What role does creativity play in the realm of Alien E-Commerce?"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Put your text",
+          "default":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+        }
+
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordian  Sections"
+    }
+  ]
+}
+{% endschema %}
