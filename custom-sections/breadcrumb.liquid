@@ -1,0 +1,32 @@
+<div class="page-width breadcrumb-section">
+    {% render 'breadcrumb' %}
+</div>
+{% if section.settings.hide_desktop %}
+    <style>
+        .breadcrumb-section{
+            display: none;
+        }
+        @media screen and (max-width: 750px) {
+            .breadcrumb-section{
+                display: block;
+            }
+        }
+    </style>
+{% endif %}
+{% schema %}
+{
+  "name": "Breadcrumb",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_desktop",
+      "label": "Hide On Desktop"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb"
+    }
+  ]
+}
+{% endschema %}

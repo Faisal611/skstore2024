@@ -1,0 +1,92 @@
+{% assign collection = collection %}
+{% assign product = product %}
+{% assign current_tags = current_tags %}
+{% assign search = search %}
+
+<nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ routes.root_url }}">Home</a></li>
+        {% if template contains 'collection' %}
+            <li class="breadcrumb-item"><a href="{{ routes.collections_url }}">Collections</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ collection.title }}</li>
+
+        {% elsif template contains 'product' %}
+            <li class="breadcrumb-item"><a href="{{ routes.collections_url }}">Collections</a></li>
+            {% if collection %}
+                <li class="breadcrumb-item">
+                    <a href="{{ collection.url }}">{{ collection.title }}</a>
+                </li>
+            {% endif %}
+            <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+
+        {% elsif template contains 'blog' %}
+            <li class="breadcrumb-item"><a href="{{ routes.blogs_url }}">Blog</a></li>
+            {% if article %}
+                <li class="breadcrumb-item">
+                    <a href="{{ article.url }}">{{ article.title }}</a>
+                </li>
+            {% endif %}
+            <li class="breadcrumb-item active" aria-current="page">{{ blog.title }}</li>
+
+        {% elsif template contains 'page' %}
+            <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+
+        {% elsif template contains 'cart' %}
+            <li class="breadcrumb-item active" aria-current="page">Cart</li>
+
+        {% elsif template contains 'search' %}
+            <li class="breadcrumb-item active" aria-current="page">Search</li>
+
+        {% else %}
+            <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+        {% endif %}
+    </ol>
+</nav>
+<style>
+    .breadcrumb {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        background-color: transparent;
+        padding-left: 0;
+    }
+    .breadcrumb-item {
+        display: flex;
+        align-items: center;
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+        display: inline-block;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+        color: #fff;
+        content: ">";
+        font-size: 18px;
+    }
+    .breadcrumb-item a {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: transparent;
+        font-size: 18px;
+        font-family: "Work Sans";
+    }
+    .breadcrumb-item a:hover {
+        color: #ddd;
+        text-decoration: none;
+    }
+    .breadcrumb-item.active {
+        color: #ffffff;
+        font-size: 18px;
+        font-family: "Work Sans";
+    }
+    @media screen and (max-width: 750px) {
+        .breadcrumb-item a {
+            font-size: 12px;
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            font-size: 12px;
+        }
+        .breadcrumb-item.active {
+            font-size: 12px;
+        }
+    }
+</style>
