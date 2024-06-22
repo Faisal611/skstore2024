@@ -39,6 +39,11 @@ Collection Load More Button:
                 </li>
               {%- endfor -%}
             </ul>
+            {%- if paginate.pages > 1 -%}
+                <div class="all__product_show text-center">
+                  <button class="button load__more" onclick="loadMoreProduct()" >LOAD MORE</button>
+                </div>
+            {%- endif -%}
           
 ```
 ```js
